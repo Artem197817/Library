@@ -1,4 +1,3 @@
-import java.util.Calendar;
 
 public class Journal implements Abonement{
     private  String name;
@@ -61,12 +60,6 @@ public class Journal implements Abonement{
         else
             return false;
     }
-
-    @Override
-    public Calendar dateOfIssued(Calendar calendar) {
-        return calendar;
-    }
-
     @Override
     public String toString() {
         return "Journal{" +

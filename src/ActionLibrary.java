@@ -13,12 +13,6 @@ public class ActionLibrary {
         l.setDateReturn(data.format(calendar.getTime()));
         issue.put(l, p);
     }
-    public void dateReturn (Abonement a){
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat data = new SimpleDateFormat("dd-MM-yyyy");
-        calendar.add(GregorianCalendar.DAY_OF_WEEK,14);
-        a.setDateReturn(data.format(calendar.getTime()));
-    }
     public static void listIssuedBook(){
         for (Abonement key: issue.keySet()){
             System.out.println(key + ": " + issue.get(key));

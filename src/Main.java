@@ -5,5 +5,6 @@ public class Main {
        Person p1 = new Person("Pol",25);
        ActionLibrary.issue(j1,p1);
        ActionLibrary.listIssuedBook();
+       Book b1 = new Book("She" ,350,1990);
     }
 }
