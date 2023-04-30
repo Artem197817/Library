@@ -4,25 +4,20 @@ public class Journal extends Books implements Abonement{
     private int numberOfPage;
     private int yearOfPublication;
     private int number;
+    private boolean isIssued = false;
+    private String dateReturn = "Книга в библиотеке";
+
 
     public boolean isIssued() {
         return isIssued;
     }
-
     public void setIssued(boolean issued) {
         isIssued = issued;
     }
-
-    private boolean isIssued = false;
-
-
     @Override
     public void setDateReturn(String dateReturn) {
         this.dateReturn = dateReturn;
     }
-
-    private String dateReturn;
-
     public String getDateReturn() {
         return dateReturn;
     }

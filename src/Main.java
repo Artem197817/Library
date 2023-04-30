@@ -18,5 +18,10 @@ public class Main {
        Person p2 = new Person("Bob",38);
        ActionLibrary.issue(j2,p2);
        Books.printBooks();
+       ActionLibrary.returnBook(b1);
+       ActionLibrary.listIssuedBook();
+       ActionLibrary.issue(b2,p1);
+       ActionLibrary.personIssued(p1);
+       ActionLibrary.personIssued(p2);
     }
 }

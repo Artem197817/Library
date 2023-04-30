@@ -3,8 +3,11 @@
         private  String name;
         private int numberOfPage;
         private int yearOfPublication;
-        private String dateReturn;
+        private String dateReturn = "Книга в библиотеке";
+        private boolean isIssued = false;
+        private String author;
 
+        @Override
         public boolean isIssued() {
             return isIssued;
         }
@@ -12,15 +15,9 @@
         public void setIssued(boolean issued) {
             isIssued = issued;
         }
-
-        private boolean isIssued = false;
-
         public String getAuthor() {
             return author;
         }
-
-        private String author;
-
         public String getDateReturn() {
             return dateReturn;
         }
