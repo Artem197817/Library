@@ -12,10 +12,12 @@ public class ActionLibrary {
         calendar.add(GregorianCalendar.DAY_OF_WEEK,14);
         l.setDateReturn(data.format(calendar.getTime()));
         issue.put(l, p);
+        l.setIssued (true);
     }
     public static void listIssuedBook(){
-        for (Abonement key: issue.keySet()){
+        for (Abonement key: issue.keySet()) {
             System.out.println(key + ": " + issue.get(key));
-    }
+        }
+            System.out.println();
     }
 }

@@ -1,9 +1,25 @@
 
-    public class Book implements Abonement {
+    public class Book extends Books implements Abonement {
         private  String name;
         private int numberOfPage;
         private int yearOfPublication;
         private String dateReturn;
+
+        public boolean isIssued() {
+            return isIssued;
+        }
+
+        public void setIssued(boolean issued) {
+            isIssued = issued;
+        }
+
+        private boolean isIssued = false;
+
+        public String getAuthor() {
+            return author;
+        }
+
+        private String author;
 
         public String getDateReturn() {
             return dateReturn;
@@ -16,46 +32,34 @@
         public String getName() {
             return name;
         }
-
         public int getNumberOfPage() {
             return numberOfPage;
         }
-
-        public void setNumberOfPage(int numberOfPage) {
-            this.numberOfPage = numberOfPage;
-        }
-
         public int getYearOfPublication() {
             return yearOfPublication;
         }
-
-        public void setYearOfPublication(int yearOfPublication) {
-            this.yearOfPublication = yearOfPublication;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Book(String name, int numberOfPage, int yearOfPublication) {
+        public Book(String name,String author, int numberOfPage, int yearOfPublication) {
             this.name = name;
             this.numberOfPage = numberOfPage;
             this.yearOfPublication = yearOfPublication;
-        }
-
-        @Override
-        public boolean isIssuedOfHand(int w) {
-            if (w==1) return  true;
-            else
-                return false;
+            this.author = author;
         }
         @Override
         public String toString() {
-            return "Book{" +
-                    "name='" + name + '\'' +
-                    ", numberOfPage=" + numberOfPage +
-                    ", yearOfPublication=" + yearOfPublication +
-                    ", dateReturn='" + dateReturn + '\'' +
+            if (isIssued)
+            return "Книга {" +
+                    "Название " + name + '\'' +
+                    ", Автор " + author +
+                    ", Количество страниц " + numberOfPage +
+                    ", Год издания " + yearOfPublication +
+                    ", Книга на руках: Дата возврата '" + dateReturn + '\'' +
                     '}';
+            else
+                return "Книга {" +
+                        "Название " + name + '\'' +
+                        ", Автор " + author +
+                        ", Количество страниц " + numberOfPage +
+                        ", Год издания " + yearOfPublication +
+                        ", Книга в библиотеке" + '}';
         }
     }

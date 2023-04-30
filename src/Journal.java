@@ -1,9 +1,20 @@
 
-public class Journal implements Abonement{
+public class Journal extends Books implements Abonement{
     private  String name;
     private int numberOfPage;
     private int yearOfPublication;
     private int number;
+
+    public boolean isIssued() {
+        return isIssued;
+    }
+
+    public void setIssued(boolean issued) {
+        isIssued = issued;
+    }
+
+    private boolean isIssued = false;
+
 
     @Override
     public void setDateReturn(String dateReturn) {
@@ -15,11 +26,6 @@ public class Journal implements Abonement{
     public String getDateReturn() {
         return dateReturn;
     }
-
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -55,19 +61,21 @@ public class Journal implements Abonement{
         this.number = number;
     }
     @Override
-    public boolean isIssuedOfHand(int w) {
-        if (w==1) return  true;
-        else
-            return false;
-    }
-    @Override
     public String toString() {
-        return "Journal{" +
-                "name='" + name + '\'' +
-                ", numberOfPage=" + numberOfPage +
-                ", yearOfPublication=" + yearOfPublication +
-                ", number=" + number +
-                ", dateReturn='" + dateReturn + '\'' +
+        if (isIssued)
+        return "Журнал{" +
+                "Название '" + name + '\'' +
+                ", Количество страниц " + numberOfPage +
+                ", Год " + yearOfPublication +
+                ", Номер " + number +
+                ", Журнал на руках: Дата возврата " + dateReturn + '\'' +
                 '}';
+        else
+            return "Журнал{" +
+                    "Название '" + name + '\'' +
+                    ", Количество страниц " + numberOfPage +
+                    ", Год " + yearOfPublication +
+                    ", Номер " + number +
+                    ", Журнал в библиотеке" + '}';
     }
 }

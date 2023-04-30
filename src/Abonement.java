@@ -1,6 +1,6 @@
 
 public interface Abonement {
-    public boolean isIssuedOfHand(int w);
+    public void setIssued(boolean issued);
 
     public void setDateReturn(String dateReturn);
 }
