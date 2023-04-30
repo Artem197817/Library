@@ -1,11 +1,11 @@
 
     public class Book extends Books implements Abonement {
-        private  String name;
-        private int numberOfPage;
-        private int yearOfPublication;
+        private final String name;
+        private final int numberOfPage;
+        private final int yearOfPublication;
         private String dateReturn = "Книга в библиотеке";
         private boolean isIssued = false;
-        private String author;
+        private final String author;
 
         @Override
         public boolean isIssued() {

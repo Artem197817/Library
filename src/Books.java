@@ -15,7 +15,7 @@ public abstract class Books implements Abonement{
     public static void setCatalog(Books b) {
         catalog.add(b);
     }
-    private static List<Books> catalog = new ArrayList<>();
+    private static final List<Books> catalog = new ArrayList<>();
     public static void printBooks (){
         System.out.println("Каталог");
         catalog.stream()
