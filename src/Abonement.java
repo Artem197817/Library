@@ -4,4 +4,5 @@ public interface Abonement {
     public void setDateReturn(String dateReturn);
     public boolean isIssued();
     public String getDateReturn();
+    public String getName();
 }

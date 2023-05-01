@@ -4,9 +4,10 @@ import java.util.*;
 
 public class ActionLibrary {
     public static HashMap<Abonement, Person> issue = new HashMap<>();
+
     public static void issue(Abonement l, Person p) {
         if (l.isIssued())
-            System.out.println("Книга на руках: Дата возврата "+l.getDateReturn());
+            System.out.println("Книга на руках: Дата возврата " + l.getDateReturn());
         else {
             Calendar calendar = Calendar.getInstance();
             SimpleDateFormat data = new SimpleDateFormat("dd-MM-yyyy");
@@ -14,7 +15,7 @@ public class ActionLibrary {
             l.setDateReturn(data.format(calendar.getTime()));
             issue.put(l, p);
             l.setIssued(true);
-            System.out.println("Книга выдана "+p);
+            System.out.println("Книга выдана " + p);
         }
         System.out.println();
     }
@@ -41,6 +42,7 @@ public class ActionLibrary {
                 .forEachOrdered(System.out::println);
         System.out.println();
     }
+
     public static void overdueRefundList() throws ParseException {
         System.out.println("Список книг с просроченным возвратом");
         List<String> refundList = new ArrayList<>();
@@ -52,9 +54,29 @@ public class ActionLibrary {
             if (dateNow.getTime().after(date))
                 refundList.add(entry.getKey().toString() + entry.getValue().toString());
         }
-            refundList.stream()
-                    .forEach(System.out::println);
+        refundList.forEach(System.out::println);
+        System.out.println();
+        refundList.clear();
+    }
+
+    public static void nameIssue(String nameBook, Person person) {
+        List<Books> b = Books.getCatalog().stream()
+                .filter(w -> w.getName().toLowerCase().contains(nameBook.toLowerCase()))
+                .toList();
+        if (b.size() == 1) {
+            ActionLibrary.issue(b.get(0), person);
+            ActionLibrary.personIssued(person);
+        } else {
+            for (int i = 0; i < b.size(); i++)
+                System.out.println((i + 1) + "  " + b.get(i));
+            Scanner sc = new Scanner(System.in);
             System.out.println();
-            refundList.clear();
+            System.out.println("Введите номер выдаваемой книги из списка");
+            int n = sc.nextInt();
+            if (n<=b.size())
+            ActionLibrary.issue(b.get(n-1), person);
+            else System.out.println("Книга не выдана");
+            ActionLibrary.personIssued(person);
+        }
     }
 }

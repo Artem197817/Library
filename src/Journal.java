@@ -7,7 +7,10 @@ public class Journal extends Books implements Abonement{
     private boolean isIssued = false;
     private String dateReturn = "Книга в библиотеке";
 
-
+    @Override
+    public String getName() {
+        return name;
+    }
     public boolean isIssued() {
         return isIssued;
     }
