@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Books implements Abonement{
+public abstract class Books implements Abonement, Serializable {
 
     @Override
     public void setDateReturn(String dateReturn) {
@@ -9,11 +10,13 @@ public abstract class Books implements Abonement{
     @Override
     public void setIssued (boolean issued) {
     }
-
+    public static void setCatal(List<Books> c){
+        catalog = c;
+    }
     public static void setCatalog(Books b) {
         catalog.add(b);
     }
-    private static final List<Books> catalog = new ArrayList<>();
+    private static List<Books> catalog = new ArrayList<>();
     public static List<Books> getCatalog(){
         return catalog;
     }

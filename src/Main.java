@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.text.ParseException;
 
 public class Main {
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, IOException {
        Journal j1 = new Journal("Times",130,2021,10);
        Person p1 = new Person("Pol",25);
        ActionLibrary.issue(j1,p1);
@@ -23,7 +24,10 @@ public class Main {
        ActionLibrary.overdueRefundList();
        Book.catalog();
        Books.printBooks();
-       ActionLibrary.personIssued(p1);
-       ActionLibrary.nameIssue("В",p2);
+       ActionLibrary.nameIssue("Власт",p2);
+      // ActionLibrary.bookWrite(Books.getCatalog());
+      // ActionLibrary.peopleWrite(Person.getPeople());
+      // ActionLibrary.issueWrite();
+       Save.save();
     }
 }
