@@ -24,10 +24,8 @@ public class Main {
        ActionLibrary.overdueRefundList();
        Book.catalog();
        Books.printBooks();
-       ActionLibrary.nameIssue("Власт",p2);
-      // ActionLibrary.bookWrite(Books.getCatalog());
-      // ActionLibrary.peopleWrite(Person.getPeople());
-      // ActionLibrary.issueWrite();
+       ActionLibrary.nameIssue("Власт");
+         Person p4 = new Person("Polina",25);
        Save.save();
     }
 }

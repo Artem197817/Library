@@ -1,7 +1,9 @@
-import java.io.*;
+
+import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.jar.JarOutputStream;
 
 public class ActionLibrary {
     public static HashMap<Abonement, Person> getIssue() {
@@ -36,6 +38,12 @@ public class ActionLibrary {
         }
         System.out.println();
     }
+    public static String scanner(){
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+        sc.close();
+        return s;
+    }
 
     public static void returnBook(Books b) {
         issue.remove(b);
@@ -48,25 +56,35 @@ public class ActionLibrary {
                 .toList();
         if (p.isEmpty()) {
             System.out.println("Читатель незарегистрирован");
-            return Person.personNew();
+            return null;
         }
         if (p.size() == 1) {
             return p.get(0);
         } else {
             for (int i = 0; i < p.size(); i++)
-                System.out.println((i + 1) + "  " + p.get(i));
-            Scanner sc = new Scanner(System.in);
+                System.out.println("id - " + (i + 1) + "  " + p.get(i));
             System.out.println();
             System.out.println("Введите id читателя");
-            int n = sc.nextInt();
-            sc.close();
-            if (n <= p.size())
-                return p.get(n - 1);
+            Scanner s = new Scanner(System.in);
+            int f = s.nextInt();
+            s.close();
+            if (f <= p.size())
+                return p.get(f - 1);
             else {
                 System.out.println("Читатель не идентифицирован");
-               return new Person();
+               return null;
             }
         }
+    }
+    public static Person personNull () {
+        if (ActionLibrary.confirmPane("Зврегистриоать нового читателя?"))
+            return Person.personNew();
+        if (ActionLibrary.confirmPane("Уточнить имя?")) {
+            String name =  ActionLibrary.inputPane("Введите имя читателя:");
+            if (name == null) return null;
+            return ActionLibrary.personName(name);
+        }
+        return null;
     }
 
     public static void personIssued(Person p) {
@@ -94,11 +112,19 @@ public class ActionLibrary {
         refundList.clear();
     }
 
-    public static void nameIssue(String nameBook, Person person) {
-        List<Books> b = Books.getCatalog().stream()
+    public static void nameIssue(String nameBook) {
+        String name =  ActionLibrary.inputPane("Введите имя читателя:");
+        if (name == null) return;
+        Person person = ActionLibrary.personName(name);
+        if (person == null)
+        person =  ActionLibrary.personNull();
+        if (person == null)
+            return;
+            List<Books> b = Books.getCatalog().stream()
                 .filter(w -> w.getName().toLowerCase().contains(nameBook.toLowerCase()))
                 .toList();
         if (b.size() == 1) {
+
             ActionLibrary.issue(b.get(0), person);
             ActionLibrary.personIssued(person);
         } else {
@@ -115,8 +141,21 @@ public class ActionLibrary {
             ActionLibrary.personIssued(person);
         }
     }
-    public static void nameIssueName (String nameBook,String name) {
+    public static String inputPane(String s){
+        return JOptionPane.showInputDialog(null,s);
+    }
+    public  static  boolean confirmPane(String message){
+        int is = JOptionPane.showConfirmDialog(null,message);
+        return is == JOptionPane.YES_OPTION;
+    }
+    public static void nameIssueName (String nameBook) {
+        String name =  ActionLibrary.inputPane("Введите имя читателя:");
+        if (name == null) return;
         Person person = ActionLibrary.personName(name);
+        if (person == null)
+            person =  ActionLibrary.personNull();
+        if (person == null)
+            return;
         List<Books> b = Books.getCatalog().stream()
                 .filter(w -> w.getName().toLowerCase().contains(nameBook.toLowerCase()))
                 .toList();

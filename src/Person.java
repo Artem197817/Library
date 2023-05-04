@@ -24,7 +24,6 @@ public class Person implements Serializable {
         this.age = age;
         people.add(Person.this);
     }
-    public Person (){}
     @Override
     public String toString() {
         return "Person{" +
@@ -38,6 +37,7 @@ public class Person implements Serializable {
         String name = sc.nextLine();
         System.out.println(("Введите возраст:"));
         String age = sc.nextLine();
+        sc.close();
         int ageInt = 0;
         if (!age.isEmpty() & age.matches("[0-9]*")) {
             ageInt = Integer.parseInt(age);
