@@ -44,7 +44,9 @@ public class Person implements Serializable {
         }
         return new Person(name, ageInt);
     }
-    public static Person personName(String name){
+    public static Person personName(){
+        String name = Decor.inputPane("Введите имя читателя:");
+        if (name == null) return null;
         List<Person> p = Person.getPeople().stream()
                 .filter(person -> person.getName().toLowerCase().contains(name.toLowerCase()))
                 .toList();
@@ -57,17 +59,9 @@ public class Person implements Serializable {
         } else {
             for (int i = 0; i < p.size(); i++)
                 System.out.println("id - " + (i + 1) + "  " + p.get(i));
-            System.out.println();
-            System.out.println("Введите id читателя");
-            Scanner s = new Scanner(System.in);
-            int f = s.nextInt();
-            s.close();
-            if (f <= p.size())
-                return p.get(f - 1);
-            else {
-                System.out.println("Читатель не идентифицирован");
-                return null;
-            }
+            System.out.println("Уточните имя указав id");
+            int id = ActionLibrary.checkId(p.size());
+                return p.get(id - 1);
         }
     }
     public static Person personNull () {
@@ -76,7 +70,7 @@ public class Person implements Serializable {
         if (Decor.confirmPane("Уточнить имя?")) {
             String name =  Decor.inputPane("Введите имя читателя:");
             if (name == null) return null;
-            return Person.personName(name);
+            return Person.personName();
         }
         return null;
     }

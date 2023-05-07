@@ -82,15 +82,18 @@ public class Book extends Books implements Abonement {
         Books.setCatalog(new Book("Теоретическая механика", "Сергей Лучезарный", 359, 1996, Genre.SCIENTIFIC));
         Books.setCatalog(new Book("Черчиль", "Сергей Драгунский", 369, 1976, Genre.BIOGRAPHY));
     }
-    public static Books nameBook(String nameBook) {
-
+    public static Books nameBook() {
+        String nameBook = Decor.inputPane("Имя книги?");
+            if (nameBook == null) return null;
         List<Books> b = Books.getCatalog().stream()
                 .filter(w -> w.getName().toLowerCase().contains(nameBook.toLowerCase()))
                 .toList();
+        if (b.isEmpty()) return null;
         if (b.size() == 1)
             return b.get(0);
             for (int i = 0; i < b.size(); i++)
                 System.out.println("id = " + (i + 1) + "  " + b.get(i));
+        System.out.println("Уточните книгу указав id");
          int n = ActionLibrary.checkId(b.size());
                return b.get(n-1);
 

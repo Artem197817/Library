@@ -1,5 +1,4 @@
 
-import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,7 +10,7 @@ public class ActionLibrary {
     }
 
     public static void setIssue(HashMap<Abonement, Person> issue) {
-        ActionLibrary.issue = issue;
+        ActionLibrary.issue.putAll (issue);
     }
 
     public static HashMap<Abonement, Person> issue = new HashMap<>();
@@ -46,12 +45,15 @@ public class ActionLibrary {
     }
 
 
-    public static void personIssued(Person p) {
+    public static void personIssued() {
+        Person p = Person.personName();
+        if (p == null)
+            return;
         System.out.println(p);
-        issue.entrySet().stream()
-                .filter(entry -> p.equals(entry.getValue()))
+        ActionLibrary.issue.entrySet().stream()
+                .filter(entry -> entry.getValue().equals (p))
                 .map(Map.Entry::getKey)
-                .forEachOrdered(System.out::println);
+                .forEach(System.out::println);
         System.out.println();
     }
 
@@ -71,34 +73,16 @@ public class ActionLibrary {
         refundList.clear();
     }
 
-    public static void nameIssuePerson(String nameBook) {
-        String name = Decor.inputPane("Введите имя читателя:");
-        if (name == null) return;
-        Person person = Person.personName(name);
+    public static void bookIssue() {
+        Person person = Person.personName();
         if (person == null)
             person = Person.personNull();
         if (person == null)
             return;
-        List<Books> b = Books.getCatalog().stream()
-                .filter(w -> w.getName().toLowerCase().contains(nameBook.toLowerCase()))
-                .toList();
-        if (b.size() == 1) {
-            ActionLibrary.issue(b.get(0), person);
-            ActionLibrary.personIssued(person);
-        } else {
-            for (int i = 0; i < b.size(); i++)
-                System.out.println("id = " + (i + 1) + "  " + b.get(i));
-            Scanner sc = new Scanner(System.in);
-            System.out.println();
-            System.out.println("Введите номер выдаваемой книги из списка");
-            int n = sc.nextInt();
-            sc.close();
-            if (n <= b.size())
-                ActionLibrary.issue(b.get(n - 1), person);
-            else System.out.println("Книга не выдана");
-            ActionLibrary.personIssued(person);
+        Books b = Book.nameBook();
+            if (b == null) return;
+            ActionLibrary.issue(b, person);
         }
-    }
 
     public static int checkId(int sizeList) {
         String id;
@@ -110,5 +94,11 @@ public class ActionLibrary {
             }
         }
             return Integer.parseInt(id);
+    }
+    public static void bookReturn() {
+        Books b = Book.nameBook();
+        if (b == null) return;
+        if (!b.isIssued()) return;
+        ActionLibrary.returnBook(b);
     }
 }
