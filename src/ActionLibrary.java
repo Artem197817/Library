@@ -50,10 +50,10 @@ public class ActionLibrary {
         if (p == null)
             return;
         System.out.println(p);
-        ActionLibrary.issue.entrySet().stream()
-                .filter(entry -> entry.getValue().equals (p))
-                .map(Map.Entry::getKey)
-                .forEach(System.out::println);
+        HashMap<Abonement ,Person> pi = new HashMap<>();
+        issue.entrySet().stream()
+                        .filter(entry -> p.equals(entry.getValue()))
+                                .forEach(System.out::println);
         System.out.println();
     }
 
