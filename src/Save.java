@@ -9,7 +9,7 @@ public class Save {
     public static void save () throws IOException {
         List<Books> books = Books.getCatalog();
         List<Person> people = Person.getPeople();
-        HashMap<Abonement,Person> issue = ActionLibrary.getIssue();
+        HashMap<Books,Person> issue = ActionLibrary.getIssue();
         FileOutputStream fos = new FileOutputStream("people.bin");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(people);
@@ -22,7 +22,11 @@ public class Save {
         oos1.close();
         FileOutputStream fos2 = new FileOutputStream("issue.bin");
         ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
-        oos2.writeObject(issue);
+        oos2.writeInt(issue.size());
+        for (Map.Entry<Books,Person> entry : issue.entrySet()) {
+            oos2.writeObject(entry.getKey());
+            oos2.writeObject(entry.getValue());
+        }
         oos2.flush();
         oos2.close();
 
@@ -38,11 +42,17 @@ public class Save {
         ArrayList<?> people = (ArrayList<?>) ois1.readObject();
         ois1.close();
         Person.setPeople((ArrayList<Person>) people);
+        HashMap<Books, Person> issue = new HashMap<>();
         FileInputStream fis2= new FileInputStream("issue.bin");
         ObjectInputStream ois2 = new ObjectInputStream(fis2);
-        HashMap<?,?> issue = (HashMap<?, ?>) ois2.readObject();
+        int mapSize = ois2.readInt();
+        for (int i = 0; i < mapSize; i++) {
+            Books key = (Books) ois2.readObject();
+            Person value = (Person) ois2.readObject();
+            issue.put(key, value);
+        }
         ois2.close();
-        ActionLibrary.setIssue((HashMap<Abonement, Person>) issue);
+        ActionLibrary.setIssue(issue);
     }
 
 }

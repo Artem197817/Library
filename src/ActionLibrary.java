@@ -1,21 +1,22 @@
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class ActionLibrary {
-    public static HashMap<Abonement, Person> getIssue() {
+public class ActionLibrary implements Serializable {
+    public static HashMap<Books, Person> getIssue() {
         return issue;
     }
 
-    public static void setIssue(HashMap<Abonement, Person> issue) {
+    public static void setIssue(HashMap<Books, Person> issue) {
         ActionLibrary.issue.putAll (issue);
     }
 
-    public static HashMap<Abonement, Person> issue = new HashMap<>();
+    public static HashMap<Books, Person> issue = new HashMap<>();
 
-    public static void issue(Abonement l, Person p) {
+    public static void issue(Books l, Person p) {
         if (l.isIssued())
             System.out.println("Книга на руках: Дата возврата " + l.getDateReturn());
         else {
@@ -42,6 +43,7 @@ public class ActionLibrary {
         issue.remove(b);
         b.setIssued(false);
         b.setDateReturn("Книга в библиотеке");
+        System.out.println("return" + b);
     }
 
 
@@ -50,7 +52,6 @@ public class ActionLibrary {
         if (p == null)
             return;
         System.out.println(p);
-        HashMap<Abonement ,Person> pi = new HashMap<>();
         issue.entrySet().stream()
                         .filter(entry -> p.equals(entry.getValue()))
                                 .forEach(System.out::println);
@@ -97,8 +98,11 @@ public class ActionLibrary {
     }
     public static void bookReturn() {
         Books b = Book.nameBook();
+        System.out.println(0);
         if (b == null) return;
+        System.out.println(1);
         if (!b.isIssued()) return;
+        System.out.println(2);
         ActionLibrary.returnBook(b);
     }
 }
