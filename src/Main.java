@@ -18,8 +18,9 @@ public class Main {
        Books.setCatalog(j3);
        Person p2 = new Person("Bob",38);
        ActionLibrary.issue(j2,p2);
-       ActionLibrary.returnBook(b1);
+       //ActionLibrary.returnBook(b1);
        ActionLibrary.issue(b2,p1);
+       Books.printBooks();
        b2.setDateReturn("27-04-2023");
        ActionLibrary.overdueRefundList();
        Book.catalog();

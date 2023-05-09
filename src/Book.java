@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class Book extends Books implements Abonement {
         private final String name;
@@ -31,7 +34,22 @@ public class Book extends Books implements Abonement {
             this.dateReturn = dateReturn;
         }
 
-        public String getName() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return numberOfPage == book.numberOfPage && yearOfPublication == book.yearOfPublication
+                && isIssued == book.isIssued && Objects.equals(name, book.name)
+                && Objects.equals(dateReturn, book.dateReturn) && Objects.equals(author, book.author)
+                && genre == book.genre;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, numberOfPage, yearOfPublication, dateReturn, isIssued, author, genre);
+    }
+
+    public String getName() {
             return name;
         }
         public int getNumberOfPage() {
@@ -67,6 +85,7 @@ public class Book extends Books implements Abonement {
                         ", Жанр " + genre +
                         ", Книга в библиотеке" + '}';
         }
+
     public static void catalog (){
         Books.setCatalog(new Book("Хождение за три моря","Афанасий Никитин", 456, 1900, Genre.HISTORICAL));
         Books.setCatalog(new Book("Лабиринт отражений", "Сергей Лукьяненко", 357, 1990, Genre.FANTASTIC));
@@ -91,11 +110,37 @@ public class Book extends Books implements Abonement {
         if (b.isEmpty()) return null;
         if (b.size() == 1)
             return b.get(0);
-            for (int i = 0; i < b.size(); i++)
+        for (int i = 0; i < b.size(); i++)
                 System.out.println("id = " + (i + 1) + "  " + b.get(i));
         System.out.println("Уточните книгу указав id");
          int n = ActionLibrary.checkId(b.size());
                return b.get(n-1);
-
+    }
+    public static int inputYearOfPublication () {
+        Calendar calendar = Calendar.getInstance();
+        int yearCurrent = Integer.parseInt(String.valueOf(calendar.get(Calendar.YEAR)));
+        String year;
+        while (true) {
+            year = Decor.inputPane(" Введите год публикации");
+            if (!year.isEmpty() & year.matches("[0-9]*"))
+                if (Integer.parseInt(year) <= yearCurrent & Integer.parseInt(year) > 1000)
+                    break;
+        }
+        return Integer.parseInt(year);
+    }
+    public static String inputName(){
+        return Decor.inputPane("Введите наименование книги");
+    }
+    public static String inputAuthor(){
+        return  Decor.inputPane("Введите автора");
+    }
+    public static int inputNumberPage () {
+        String numberPage;
+        while (true){
+            numberPage = Decor.inputPane("Введите количество страниц");
+            if (!numberPage.isEmpty() & numberPage.matches("[0-9]*"))
+                    break;
+        }
+        return Integer.parseInt(numberPage);
     }
 }
