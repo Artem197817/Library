@@ -5,4 +5,5 @@ public interface Abonement {
     public boolean isIssued();
     public String getDateReturn();
     public String getName();
+    public String getAuthor();
 }

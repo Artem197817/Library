@@ -1,3 +1,4 @@
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -5,6 +6,8 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Person implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 5888800691746286271L;
     private final String name;
     private final int age;
     private static List<Person> people = new ArrayList<>();

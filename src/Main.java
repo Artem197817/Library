@@ -25,8 +25,8 @@ public class Main {
        ActionLibrary.overdueRefundList();
        Book.catalog();
        Books.printBooks();
-       ActionLibrary.bookIssue();
-       ActionLibrary.personIssued();
+       //ActionLibrary.bookIssue();
+      // ActionLibrary.personIssued();
          Person p4 = new Person("Polina",25);
        Save.save();
     }

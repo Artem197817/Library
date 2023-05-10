@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Decor {
+public abstract class Decor {
 
     public static String inputPane(String s){
         return JOptionPane.showInputDialog(null,s);
@@ -10,4 +10,9 @@ public class Decor {
                 JOptionPane.YES_NO_OPTION);
         return is == JOptionPane.YES_OPTION;
     }
+    public static void messagePane (String message){
+        JOptionPane.showMessageDialog(null,message);
+
+    }
+
 }

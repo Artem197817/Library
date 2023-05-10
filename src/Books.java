@@ -1,9 +1,11 @@
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Books implements Abonement, Serializable {
-
+    @Serial
+    private static final long serialVersionUID = 2483186420753560016L;
     @Override
     public void setDateReturn(String dateReturn) {
     }

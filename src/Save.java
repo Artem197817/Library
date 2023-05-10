@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Save {
-    private static final long serialVersionUID = 1L;
+    //private static final long serialVersionUID = 1L;
     public static void save () throws IOException {
         List<Books> books = Books.getCatalog();
         List<Person> people = Person.getPeople();

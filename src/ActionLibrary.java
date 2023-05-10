@@ -1,11 +1,14 @@
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 
-public class ActionLibrary implements Serializable {
+public abstract class ActionLibrary implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -4113293303477307163L;
     public static HashMap<Books, Person> getIssue() {
         return issue;
     }
@@ -14,7 +17,7 @@ public class ActionLibrary implements Serializable {
         ActionLibrary.issue.putAll (issue);
     }
 
-    public static HashMap<Books, Person> issue = new HashMap<>();
+    private static HashMap<Books, Person> issue = new HashMap<>();
 
     public static void issue(Books l, Person p) {
         if (l.isIssued())
@@ -89,10 +92,10 @@ public class ActionLibrary implements Serializable {
         String id;
         while (true) {
             id = Decor.inputPane(" Введите id");
-            if (!id.isEmpty() & id.matches("[0-9]*")) {
-                if (Integer.parseInt(id) <= sizeList)
-                    break;
-            }
+            if (id != null)
+                if (id.matches("[0-9]*"))
+                    if (Integer.parseInt(id) <= sizeList)
+                        break;
         }
             return Integer.parseInt(id);
     }
