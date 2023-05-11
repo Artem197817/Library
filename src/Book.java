@@ -195,6 +195,7 @@ public class Book extends Books implements Abonement {
             Decor.messagePane("Некорректные данные");
             return;
         }
-        Books.setCatalog(b);
+        if (Decor.confirmPane("Записать?"+"\n"+b))
+             Books.setCatalog(b);
     }
 }

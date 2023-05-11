@@ -2,10 +2,10 @@
 import java.util.Objects;
 
 public class Journal extends Books implements Abonement{
-    private  String name;
-    private int numberOfPage;
-    private int yearOfPublication;
-    private int number;
+    private final String name;
+    private final int numberOfPage;
+    private final int yearOfPublication;
+    private final int number;
     private boolean isIssued = false;
     private String dateReturn = "Книга в библиотеке";
 
@@ -32,26 +32,14 @@ public class Journal extends Books implements Abonement{
     public String getDateReturn() {
         return dateReturn;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public int getNumberOfPage() {
         return numberOfPage;
     }
 
-    public void setNumberOfPage(int numberOfPage) {
-        this.numberOfPage = numberOfPage;
-    }
-
     public int getYearOfPublication() {
         return yearOfPublication;
     }
-
-    public void setYearOfPublication(int yearOfPublication) {
-        this.yearOfPublication = yearOfPublication;
-    }
-
     public int getNumber() {
         return number;
     }
@@ -60,11 +48,6 @@ public class Journal extends Books implements Abonement{
     public Genre getGenre() {
         return Genre.JOURNALISM;
     }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public Journal(String name, int numberOfPage, int yearOfPublication, int number) {
         this.name = name;
         this.numberOfPage = numberOfPage;
@@ -123,6 +106,7 @@ public class Journal extends Books implements Abonement{
             Decor.messagePane("Некорректные данные");
             return;
         }
-        Book.setCatalog(j);
+        if (Decor.confirmPane("Записать?"+"\n"+j))
+             Book.setCatalog(j);
     }
 }

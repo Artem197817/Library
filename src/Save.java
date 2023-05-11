@@ -82,7 +82,7 @@ public abstract class Save {
             String[] book = sc.nextLine().split(",");
             if (book[0].equals("b")) {
                 Genre genre = Genre.valueOf(book[5]);
-                Book b = new Book(book[1], book[2], Integer.parseInt(book[3]),
+                Books b = new Book(book[1], book[2], Integer.parseInt(book[3]),
                         Integer.parseInt(book[4]),genre );
                 Books.setCatalog(b);
             }

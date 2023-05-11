@@ -18,12 +18,11 @@ public class IssueReturn{
        // List<Books> books = Books.getCatalog();
        // SortedLibrary.AlphabetSorted(Books.getCatalog()).forEach(System.out::println);
         //System.out.println(Book.inputGenre().toString());
-        //Book.newBook();
-       // Journal.newJournal();
-      //  Books.printBooks();
-        //  Добавить поджтверждение добавления
-        Save.writerBooks();
+       // Book.newBook();
+       //Journal.newJournal();
+       // Save.writerBooks();
        // Save.inputBook();
+        // Books.deleteBook();
         Books.printBooks();
     }
 }
