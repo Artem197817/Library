@@ -5,5 +5,6 @@ public enum Genre {
     SCIENTIFIC,
     LOVE,
     PROSE,
-    BIOGRAPHY;
+    BIOGRAPHY,
+    JOURNALISM
 }

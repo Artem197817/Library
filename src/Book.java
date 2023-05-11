@@ -66,6 +66,15 @@ public class Book extends Books implements Abonement {
         return yearOfPublication;
     }
 
+    public Genre getGenre() {
+        return genre;
+    }
+
+    @Override
+    public int getNumber() {
+        return 0;
+    }
+
     public Book(String name, String author, int numberOfPage, int yearOfPublication, Genre genre) {
         this.name = name;
         this.numberOfPage = numberOfPage;

@@ -6,4 +6,8 @@ public interface Abonement {
     public String getDateReturn();
     public String getName();
     public String getAuthor();
+    public int getNumberOfPage();
+    public int getYearOfPublication();
+    public Genre getGenre();
+    public int getNumber();
 }

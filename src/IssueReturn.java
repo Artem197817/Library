@@ -7,11 +7,11 @@ import java.util.Map;
 public class IssueReturn{
     public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
        Save.read();
-        //Books.printBooks();
+        Books.printBooks();
       // ActionLibrary.bookIssue();
          //ActionLibrary.listIssuedBook();
        //ActionLibrary.bookReturn();
-         ActionLibrary.personIssued();
+         //ActionLibrary.personIssued();
         // ActionLibrary.listIssuedBook();
       // ActionLibrary.overdueRefundList();
         // Save.save();
@@ -21,5 +21,9 @@ public class IssueReturn{
         //Book.newBook();
        // Journal.newJournal();
       //  Books.printBooks();
+        //  Добавить поджтверждение добавления
+        Save.writerBooks();
+       // Save.inputBook();
+        Books.printBooks();
     }
 }

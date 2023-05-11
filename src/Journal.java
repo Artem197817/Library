@@ -56,6 +56,11 @@ public class Journal extends Books implements Abonement{
         return number;
     }
 
+    @Override
+    public Genre getGenre() {
+        return Genre.JOURNALISM;
+    }
+
     public void setNumber(int number) {
         this.number = number;
     }
