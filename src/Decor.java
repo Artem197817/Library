@@ -1,6 +1,7 @@
 import javax.swing.*;
+import java.util.List;
 
-public abstract class Decor {
+public abstract class Decor extends JFrame{
 
     public static String inputPane(String s){
         return JOptionPane.showInputDialog(null,s);
@@ -14,5 +15,6 @@ public abstract class Decor {
         JOptionPane.showMessageDialog(null,message);
 
     }
+  //  public static List<?> list()
 
 }

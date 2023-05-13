@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
+
 
 public class Person implements Serializable {
     @Serial
@@ -26,7 +26,7 @@ public class Person implements Serializable {
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
-        people.add(Person.this);
+
     }
     @Override
     public String toString() {
@@ -35,17 +35,15 @@ public class Person implements Serializable {
                 ", возраст " + age +
                 '}';
     }
+    public static void personList (Person person){
+        if (Decor.confirmPane("Зарегистрировать читателя?" + "\n" + person))
+            people.add(person);
+    }
     public static Person personNew() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Введите имя: ");
-        String name = sc.nextLine();
-        System.out.println(("Введите возраст:"));
-        String age = sc.nextLine();
-        sc.close();
-        int ageInt = 0;
-        if (!age.isEmpty() & age.matches("[0-9]*")) {
-            ageInt = Integer.parseInt(age);
-        }
+      String name =  Person.inputName();
+        if (name.equals("Xrenas2"))
+            name = "No name";
+      int ageInt = Person.inputAge();
         return new Person(name, ageInt);
     }
     public static Person personName(){
@@ -90,5 +88,32 @@ public class Person implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(name, age);
+    }
+
+    public static String inputName() {
+        String name = Decor.inputPane("Введите имя");
+        if (name == null)
+            return "Xrenas2";
+        return name;
+    }
+    public static int inputAge() {
+        String age;
+        while (true) {
+            age = Decor.inputPane(" Введите возраст");
+            if (age != null)
+                if (age.matches("[0-9]*"))
+                    if (Integer.parseInt(age) > 3 & Integer.parseInt(age) < 110)
+                         break;
+        }
+        return Integer.parseInt(age);
+    }
+    public static void deletePerson() {
+        Person person = Person.personName();
+        if (person == null) {
+            Decor.messagePane("Читатель не найден");
+            return;
+        }
+        if (Decor.confirmPane("Удалить?"+"\n"+person))
+            Person.getPeople().remove(person);
     }
 }
