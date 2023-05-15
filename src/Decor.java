@@ -1,7 +1,10 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
-public abstract class Decor extends JFrame{
+public  class Decor extends JFrame{
 
     public static String inputPane(String s){
         return JOptionPane.showInputDialog(null,s);
@@ -15,6 +18,15 @@ public abstract class Decor extends JFrame{
         JOptionPane.showMessageDialog(null,message);
 
     }
-  //  public static List<?> list()
 
-}
+
+    //  public static List<?> list()
+   public static void list1 (){
+        JFrame frame = new JFrame();
+        frame.setSize(600,400);
+        frame.setVisible(true);
+   }
+
+
+    }
+

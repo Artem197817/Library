@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.Map;
 public class IssueReturn{
     public static void main(String[] args) throws IOException, ClassNotFoundException, ParseException {
        Save.read();
-        Books.printBooks();
+        // Books.printBooks();
       // ActionLibrary.bookIssue();
          //ActionLibrary.listIssuedBook();
        //ActionLibrary.bookReturn();
@@ -24,5 +25,7 @@ public class IssueReturn{
        // Save.inputBook();
         // Books.deleteBook();
         //Books.printBooks();
+        SwingUtilities.invokeLater(PuskGUI::new);
+
     }
 }

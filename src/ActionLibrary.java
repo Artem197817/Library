@@ -29,9 +29,8 @@ public abstract class ActionLibrary implements Serializable {
             l.setDateReturn(data.format(calendar.getTime()));
             issue.put(l, p);
             l.setIssued(true);
-            System.out.println("Книга выдана " + p);
+            Decor.messagePane( "Книга выдана " +"\n"+ p);
         }
-        System.out.println();
     }
 
     public static void listIssuedBook() {
@@ -46,7 +45,7 @@ public abstract class ActionLibrary implements Serializable {
         issue.remove(b);
         b.setIssued(false);
         b.setDateReturn("Книга в библиотеке");
-        System.out.println("return" + b);
+        Decor.messagePane("Книга в библиотеке" + "\n" + b);
     }
 
 
@@ -101,11 +100,8 @@ public abstract class ActionLibrary implements Serializable {
     }
     public static void bookReturn() {
         Books b = Book.nameBook();
-        System.out.println(0);
         if (b == null) return;
-        System.out.println(1);
         if (!b.isIssued()) return;
-        System.out.println(2);
         ActionLibrary.returnBook(b);
     }
 }
